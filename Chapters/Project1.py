@@ -1,7 +1,7 @@
 import cv2 as cv
 from chapter3 import stackImages
 import numpy as np
-cap = cv.VideoCapture("http://192.168.1.203:8080/video") 
+cap = cv.VideoCapture(0) 
 # cap.set(10 , 150) # Set brightness to 150
 def PreProcess(frame):
     imgGray = cv.cvtColor(frame , cv.COLOR_BGR2GRAY)

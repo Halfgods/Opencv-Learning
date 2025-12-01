@@ -39,10 +39,10 @@ def stackImages(scale,imgArray):
 
 
 # Example 1: Horizontal Stack (Scale 0.5)
-stacked_result = stackImages(0.5, ([img1, img2, img3]))
+# stacked_result = stackImages(0.5, ([img1, img2, img3]))
 
-# Example 2: 2x2 Grid
-grid_result = stackImages(0.5, ([img1, img2], [img3, img1]))
-cv.imshow("Stacked", stacked_result)
-cv.imshow("grid", grid_result)
-cv.waitKey(0)
+# # Example 2: 2x2 Grid
+# grid_result = stackImages(0.5, ([img1, img2], [img3, img1]))
+# cv.imshow("Stacked", stacked_result)
+# cv.imshow("grid", grid_result)
+# cv.waitKey(0)

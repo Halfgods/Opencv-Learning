@@ -3,4 +3,4 @@ pyproject.toml
 __pycache__/
 uv.lock
 .venv/
-.gitignore
+.gitignore/

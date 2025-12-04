@@ -18,6 +18,6 @@ status, result = stitcher.stitch(images)
 if status == 0:
     # plt.figure(figsize=[30, 10])
     cv.imshow("Result",result)
-
+cv.imwrite("./related output/learnings/boat_panorama.jpg", result)
 cv.waitKey(0)
 cv.destroyAllWindows()

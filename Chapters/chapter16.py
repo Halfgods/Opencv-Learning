@@ -42,7 +42,7 @@ source = cv2.VideoCapture(s)
 
 win_name = "Camera Preview"
 cv2.namedWindow(win_name, cv2.WINDOW_NORMAL)
-
+# Load the Brain
 net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "res10_300x300_ssd_iter_140000_fp16.caffemodel")
 # Model parameters
 in_width = 300
@@ -59,7 +59,7 @@ while cv2.waitKey(1) != 27:
     frame_width = frame.shape[1]
 
     # Create a 4D blob from a frame.
-    blob = cv2.dnn.blobFromImage(frame, 1.0, (in_width, in_height), mean, swapRB=False, crop=False)
+    blob = cv2.dnn.blobFromImage(frame, 1.0, (in_width, in_height), mean, swapRB=False, crop=False )
     # Run a model
     net.setInput(blob)
     detections = net.forward()
@@ -75,7 +75,6 @@ while cv2.waitKey(1) != 27:
             cv2.rectangle(frame, (x_top_left, y_top_left), (x_bottom_right, y_bottom_right), (0, 255, 0))
             label = "Confidence: %.4f" % confidence
             label_size, base_line = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)
-
             cv2.rectangle(
                 frame,
                 (x_top_left, y_top_left - label_size[1]),

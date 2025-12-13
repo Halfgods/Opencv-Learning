@@ -71,7 +71,6 @@ while cv2.waitKey(1) != 27:
             y_top_left = int(detections[0, 0, i, 4] * frame_height)
             x_bottom_right  = int(detections[0, 0, i, 5] * frame_width)
             y_bottom_right  = int(detections[0, 0, i, 6] * frame_height)
-
             cv2.rectangle(frame, (x_top_left, y_top_left), (x_bottom_right, y_bottom_right), (0, 255, 0))
             label = "Confidence: %.4f" % confidence
             label_size, base_line = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 1)

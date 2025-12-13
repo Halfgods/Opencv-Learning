@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-def empty(x):
+def empty(x): # 
     pass
 
 # 1. Read image ONCE (Efficiency)

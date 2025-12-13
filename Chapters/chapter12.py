@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def convolution_demo():
     # Load image in Gray for clarity
-    img = cv.imread("./ldr-Drago.jpg", 0) 
+    img = cv.imread("./Data/TARGET.png", 0) 
     if img is None:
         print("Image not found. Using a dummy image.")
         img = np.zeros((300, 300), dtype=np.uint8)
@@ -19,15 +19,21 @@ def convolution_demo():
     k_edge = np.array([[-1, 0, 1],
                        [-2, 0, 2],
                        [-1, 0, 1]])
-
+    # 3. THE SHARPEN KERNEL
+    # Center is positive (keep the pixel), neighbors are negative (remove surroundings)
+    # Result: Increases contrast drastically.
+    k_sharpen = np.array([[ 0, -1,  0],
+                          [-1,  5, -1],
+                          [ 0, -1,  0]])
     # Apply both using the same function
     out_blur = cv.filter2D(img, -1, k_blur)
     out_edge = cv.filter2D(img, -1, k_edge)
+    sharp = cv.filter2D(img, -1, k_sharpen)
 
     # Plot
     plt.figure(1)
     plt.title("Original")
-    plt.imshow(img)
+    plt.imshow(img, cmap='gray')
 
     plt.figure(2)
     plt.title("Your Blur (Averaging)")
@@ -36,6 +42,10 @@ def convolution_demo():
     plt.figure(3)
     plt.title("AI Edge Feature (Sobel)")
     plt.imshow(out_edge, cmap='gray') # Note: Edges will light up white
+    
+    plt.figure(4)
+    plt.title("AI Edge Feature (Sobel)")
+    plt.imshow(sharp, cmap='gray') # Note: Edges will light up white
 
     plt.show()
 

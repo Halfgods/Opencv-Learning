@@ -5,7 +5,7 @@ def empty(x): #
     pass
 
 # 1. Read image ONCE (Efficiency)
-path = "./Data/diffcolorcircle.png"
+path = "../Data/diffcolorcircle.png"
 img = cv.imread(path)
 img = cv.resize(img, (500,500))
 

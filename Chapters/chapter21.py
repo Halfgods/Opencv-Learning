@@ -58,8 +58,16 @@ def image_stats(image):
 
 if __name__ == "__main__":
     frame = color_transfer(cv2.imread(args["source"]), cv2.imread(args["target"]))
-    cv2.imshow("Result" , imutils.resize(frame , width= 400))
-    cv2.imshow("source" , imutils.resize(cv2.imread(args["source"]) , width= 400))
-    cv2.imshow("target" , imutils.resize(cv2.imread(args["target"]) , width= 400))
+    cv2.imshow("Result" , imutils.resize(frame , width= 500))
+    cv2.imshow("source" , imutils.resize(cv2.imread(args["source"]) , width= 500))
+    cv2.imshow("target" , imutils.resize(cv2.imread(args["target"]) , width= 500))
     cv2.waitKey(0)
+    cv2.destroyAllWindows()
     
+    
+"""
+Option 1: Compute the mean and standard deviation of the source image in a smaller region of interest (ROI) that you would like to mimic the color of, rather than using the entire image. Taking this approach will make your mean and standard deviation better represent the color space you want to use.
+
+Option 2: The second approach is to apply k-means to both of the images. You can cluster on the pixel intensities of each image in the L*a*b* color space and then determine the centroids between the two images that are most similar using the Euclidean distance. Then, compute your statistics within each of these regions only. Again, this will give your mean and standard deviation a more “local” effect and will help mitigate the overrepresentation problem of global statistics. Of course, the downside is that this approach is substantially slower, since you have now added in an expensive clustering step.
+"""
+

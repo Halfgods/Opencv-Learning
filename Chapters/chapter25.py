@@ -15,6 +15,15 @@ def sort_contours(cnts, method="left-to-right"):
 	# the x-coordinate of the bounding box
 	if method == "top-to-bottom" or method == "bottom-to-top":
 		i = 1
+	
+	if method == "area-ascending":
+			# Sort purely by contour Area (Smallest -> Largest)
+			cnts = sorted(cnts, key=cv2.contourArea, reverse=False)
+			return (cnts, None) # We don't need bounding boxes for this return
+	elif method == "area-descending":
+			# Sort purely by contour Area (Largest -> Smallest)
+			cnts = sorted(cnts, key=cv2.contourArea, reverse=True)
+			return (cnts, None)
 	# construct the list of bounding boxes and sort them from top to
 	# bottom
 	boundingBoxes = [cv2.boundingRect(c) for c in cnts]
@@ -43,7 +52,7 @@ args = vars(ap.parse_args())
 
 # load the image and initialize the accumulated edge image
 image = imutils.resize(cv2.imread(args["image"]) , width=500)
-image =  imutils.rotate_bound(image , -90) #Only use if you want to test top-to-bottom and u dont have the image else comment it out
+image =  imutils.rotate_bound(image , -90)
 accumEdged = np.zeros(image.shape[:2], dtype="uint8")
 # loop over the blue, green, and red channels, respectively
 for chan in cv2.split(image):
